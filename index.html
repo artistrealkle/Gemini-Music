@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Music - Spotify Clone</title>
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1db954">
+<meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+</head>
+<body>
+    <div id="toast-container"></div> 
+    
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fab fa-spotify"></i> <span>Spotify</span>
+            </div>
+            
+            <nav class="menu">
+                <ul>
+                    <li class="active" id="nav-home"><i class="fas fa-home"></i> Ana Sayfa</li>
+                    <li id="nav-search"><i class="fas fa-search"></i> Ara</li>
+                    <li id="nav-library"><i class="fas fa-book"></i> Kitaplığın</li>
+                    <li id="nav-liked"><i class="fas fa-heart"></i> Beğenilen Şarkılar</li>
+                    <li class="upload-nav-item">
+                        <label for="file-input" style="cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 12px 0;">
+                            <i class="fas fa-plus-square"></i> <span>Şarkı Yükle</span>
+                        </label>
+                        <input type="file" id="file-input" accept="audio/*" multiple style="display: none;">
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <div class="content-header-bg" id="dynamic-bg-blur"></div> 
+            <header class="topbar">
+                <div class="topbar-left">
+                    <div class="nav-btns">
+                        <button class="circle-btn" id="nav-back"><i class="fas fa-chevron-left"></i></button>
+                        <button class="circle-btn" id="nav-forward"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="search-input-wrapper" id="topbar-search" style="display: none;">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Ne dinlemek istiyorsun?" id="search-input">
+                    </div>
+                </div>
+                <div class="user-info">
+                    <button class="premium-btn">Yükselt</button>
+                    <button class="user-tag">Giriş Yap</button>
+                </div>
+            </header>
+
+            <div id="home-section" class="section">
+                <h1 id="welcome-text" style="margin: 20px 0;">Günaydın</h1>
+                <div class="quick-links-grid">
+                    <div class="quick-card" onclick="showSection('liked')">
+                        <div class="quick-img-box"><i class="fas fa-heart"></i></div>
+                        <span>Beğenilen Şarkılar</span>
+                        <button class="play-hover"><i class="fas fa-play"></i></button>
+                    </div>
+                    </div>
+                <table class="song-table" style="margin-top: 40px;">
+                    <thead>
+                        <tr><th>#</th><th>Başlık</th><th>Sanatçı</th><th><i class="far fa-heart"></i></th><th><i class="far fa-clock"></i></th></tr>
+                    </thead>
+                    <tbody id="song-list"></tbody>
+                </table>
+            </div>
+            
+            </main>
+
+        <aside class="right-panel">
+            </aside>
+
+        <footer class="player-bar">
+            </footer>
+    </div>
+
+    <audio id="audio-element"></audio>
+    <script src="script.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
+</body>
+</html>
+
