@@ -400,20 +400,3 @@ function updateWelcomeMessage() {
 
 // Sayfa yüklendiğinde çalıştır
 updateWelcomeMessage();
-
-let deferredPrompt;
-const installBtn = document.getElementById('nav-install');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if(installBtn) installBtn.style.display = 'flex';
-});
-
-installBtn?.addEventListener('click', async () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') deferredPrompt = null;
-    }
-});
